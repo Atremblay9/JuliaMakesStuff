@@ -1,0 +1,1 @@
+{"mappings":"AAAA","sources":["css/main.css"],"sourcesContent":[".navbar-brand{\r\n    font-size: 1.5em;\r\n    font-weight: bold;\r\n    color: black;\r\n    text-transform: uppercase;\r\n    letter-spacing: 1px;\r\n}\r\n\r\n"],"names":[],"version":3,"file":"index.47ca9330.css.map","sourceRoot":"/__parcel_source_root/"}
