@@ -3,6 +3,8 @@ import { products } from './products.js'; // Importing the products from the ext
 const productGrid = document.getElementById('product-grid');
 const categoryFilter = document.getElementById('category');
 const availabilityFilter = document.getElementById('availability');
+const cartItems = document.querySelector('.cart-items');
+
 
 // Function to generate product cards with Bootstrap carousel
 function displayProducts(filteredProducts) {
@@ -45,7 +47,7 @@ function displayProducts(filteredProducts) {
                     <p class="card-text">Notes: ${product.notes}</p>
                 </div>
                 <div class="mt-2">
-                  <button class="btn btn-primary d-block mx-auto">Add Request</button>
+                  <button class="btn btn-primary d-block mx-auto add-to-cart" data-product-id="${product.id}">Add Request</button>
                 </div>
             </div>
         </div>
@@ -53,6 +55,7 @@ function displayProducts(filteredProducts) {
 
         productGrid.innerHTML += productCard;
     });
+    setupAddToCartListeners(); // Setup listener for add to cart button
 }
 
 // Filtering logic (same as before)
@@ -74,8 +77,78 @@ function filterProducts() {
 categoryFilter.addEventListener('change', filterProducts);
 availabilityFilter.addEventListener('change', filterProducts);
 
+function emptyCartListener() {
+    let cartItems = document.querySelectorAll('.cart-items');
+    if (cartItems.length === 0) {
+        alert('Please add items to the cart before submitting your request.');
+        parent.parent.classList.add('hidden');
+    }
+}
 
+function setupAddToCartListeners() {
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-product-id');
+            addItemToCart(productId);
+        });
+    });
+}
+
+// Function to add item to cart
+function addItemToCart(productId) {
+    const product = products.find(p => p.id == productId); // Find the product by ID
+
+    if (product) {
+        // Create cart item HTML using product details
+        const cartItemHTML = `
+        <div class="card rounded-3 mb-4 cart-item"> 
+              <div class="card-body p-4">
+                <div class="row d-flex justify-content-between align-items-center">
+                  <div class="col-md-2 col-lg-2 col-xl-2">
+                    <img
+                      src="${product.images[0]}" 
+                      class="img-fluid rounded-3" alt="${product.name}">
+                  </div>
+                  <div class="col-md-3 col-lg-3 col-xl-3">
+                    <p class="lead fw-normal mb-2">${product.name}</p>
+                    <p><span class="text-muted">Price: </span>${product.price}</p>
+                  </div>
+                  <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                    <p><span class="text-muted">Availability: </span>${product.available}</p>
+                  </div>
+                  
+                  <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                    <a href="#!" class="text-danger remove-from-cart"><i class="fas fa-trash fa-lg"></i></a>
+                  </div>
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12 col-lg-12 col-xl-12">
+                        <label for="details-${product.id}">Details / Comments:</label>
+                        <textarea id="details-${product.id}" class="form-control details-input" rows="2" placeholder="Please enter details such as size, colours, materials and any questions you may have."></textarea>
+                    </div>
+                </div>
+              </div>
+            </div>`;
+
+        // Append the new cart item to the cart
+        cartItems.innerHTML += cartItemHTML;
+
+        // Add remove functionality
+        setupRemoveFromCartListeners(); // Setup listener for remove button
+    }
+}
+
+// Function to handle removing an item from the cart
+function setupRemoveFromCartListeners() {
+    document.querySelectorAll('.remove-from-cart').forEach(button => {
+        button.addEventListener('click', function () {
+            this.closest('.cart-item').remove();
+        });
+    });
+}
 // Initial load
 window.onload = () => {
     displayProducts(products); // Display all products on load
+    emptyCartListener();
 };

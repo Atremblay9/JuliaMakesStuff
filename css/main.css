@@ -214,6 +214,46 @@ main{
 }
 
 
+.add-to-cart {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-container {
+    margin-top: 30px;
+}
+
+#cart-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-item .comment {
+    margin-left: 10px;
+    width: 200px;
+    height: 50px;
+}
+
+.cart-item .remove-from-cart {
+    margin-left: 10px;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+
+
 .footer{
     background-color: var(--primary);
     text-align: center;

@@ -1,7 +1,7 @@
 {
   "name": "julia-makes-stuff",
   "version": "1.0.0",
-  "source" : "index.html",
+  "source": "index.html",
   "scripts": {
     "start": "parcel"
   },
@@ -9,6 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@sendgrid/mail": "^8.1.4",
     "bootstrap": "^5.3.3",
     "validator": "^13.12.0"
   }
