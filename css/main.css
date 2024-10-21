@@ -1,3 +1,40 @@
+:root {
+    --text: #0a0f14;
+    --background: #f6f7f8;
+    --primary: #6fa0ae;
+    --secondary: #aca5ca;
+    --accent: #b98fbd;
+  }
+
+
+@import url('https://fonts.googleapis.com/css?family=David%20Libre:700|David%20Libre:400');
+
+body {
+  font-family: 'David Libre';
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'David Libre';
+  font-weight: 700;
+}
+
+html {font-size: 100%;} /* 16px */
+
+h1 {font-size: 4.210rem; /* 67.36px */}
+
+h2 {font-size: 3.158rem; /* 50.56px */}
+
+h3 {font-size: 2.369rem; /* 37.92px */}
+
+h4 {font-size: 1.777rem; /* 28.48px */}
+
+h5 {font-size: 1.333rem; /* 21.28px */}
+
+small {font-size: 0.750rem; /* 12px */}
+
+p {font-size: 1.000rem; /* 16px */}
+
 .navbar-brand{
     font-size: 2rem;
     font-weight: bold;
@@ -9,11 +46,12 @@
 }
 
 .header{
-    background-color: #AAE6E5;
+    background-color: var(--primary);
 }
 
 .nav-link{
     font-size: 1.25rem;
+    
 }
 
 .nav-link:hover{
@@ -30,20 +68,96 @@ nav.socials:hover{
 .navbar-nav{
     padding-left: 1rem;
     text-align: center;
+    color: var(--text);
+}
+
+
+.switch {
+	font-size: 17px;
+	position: relative;
+	display: inline-block;
+	width: 3.5em;
+	height: 2em;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: var(--secondary);
+	transition: 0.4s;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 0.3em;
+	box-sizing: border-box;
+}
+
+.slider::before,
+.slider::after {
+	content: "";
+	width: 1.4em;
+	height: 1.4em;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.slider::before {
+	content: "🌙";
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.slider::after {
+	content: "☀️";
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.slider span {
+	position: absolute;
+	height: 1.4em;
+	width: 1.4em;
+	border-radius: 8px;
+	left: 0.3em;
+	bottom: 0.3em;
+	background-color: var(--secondary);
+	transition: 0.4s;
+	transform: rotate(270deg);
+}
+
+.switch input:checked + .slider span {
+	transform: translateX(1.5em);
 }
 
 main{
-    background-color: #E1F2FB;
+    background-color: var(--background);
 }
 
 
-
+.carousel-item img {
+    height: 30vh; /* You can adjust this value to whatever height you need */
+    object-fit: cover;
+    width: 100%; /* Ensures the image takes up the full width of the carousel item */
+}
 
 .hero{
-    background-image: url(../img/Hero-temp.png);
+    background-image: url(../img/TempBanner.webp);
     background-size: cover;
     background-position: center;
-    height: 30vh;
+    height: 40vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,6 +177,7 @@ main{
 .about-me .card{
     box-shadow: rgb(105, 105, 105) 0px 0px 10px;
     padding: 1rem;
+    background-color: var(--secondary);
 }
 
 .about-me .card img{
@@ -70,7 +185,7 @@ main{
 }
 
 .shop h2{
-    font-size: 2rem;
+    
     font-weight: bold;
     text-align: center;
     margin: 1rem;
@@ -82,10 +197,14 @@ main{
 .item-cards{
     flex-direction: column;
     height: fit-content;
+    
 }
-
+.item-cards a
+{
+    text-decoration: none;
+    color: var(--text);
+}
 .item-cards h3{
-    font-size: 2rem;
     font-weight: bold;
     text-align: center;
     margin: 1rem;
@@ -105,7 +224,7 @@ main{
 .item-card{
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--secondary);
     align-items: center;
     margin: 1rem;
     padding: 1rem;
@@ -143,8 +262,19 @@ main{
     background-image: url(../img/green-blob.webp);
 }
 
+.card button{
+    background-color: var(--secondary);
+    border-color: var(--accent);
+}
+
+.card button:hover{
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+
 .footer{
-    background-color: #AAE6E5;
+    background-color: var(--primary);
     text-align: center;
     padding: 1rem;
     margin: 0;
@@ -188,6 +318,10 @@ main{
 }
 
 @media (min-width: 990px){
+    nav div{
+        margin: 0 auto;
+        max-width:  80%;
+    }
     .navbar-nav{
         display: flex;
         justify-content: space-evenly;
