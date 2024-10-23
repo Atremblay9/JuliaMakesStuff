@@ -139,6 +139,7 @@ function setupRemoveFromCartListeners() {
     });
 }
 
+
 const cartForm = document.getElementById('cart-form');
 const cartItemsContainer = document.querySelector('.cart-items');
 
@@ -152,14 +153,21 @@ cartForm.addEventListener('submit', function (event) {
         return;
     }
 
-    // Gather the cart data
+    // Gather the cart data for all items in the cart
     let cartContent = '';
     const cartItems = document.querySelectorAll('.cart-item');
-    cartItems.forEach(item => {
+
+    // Loop through each cart item and concatenate its details
+    cartItems.forEach((item, index) => {
         const itemName = item.querySelector('.item-name').textContent;
         const itemPrice = item.querySelector('.item-price').textContent;
         const itemComment = item.querySelector('textarea').value || 'No comments';
-        cartContent += `Item: ${itemName}\nPrice: ${itemPrice}\nComments: ${itemComment}\n\n`;
+
+        // Concatenate each item's details in a readable format
+        cartContent += `Item ${index + 1}:\n`;
+        cartContent += `Name: ${itemName}\n`;
+        cartContent += `Price: ${itemPrice}\n`;
+        cartContent += `Comments: ${itemComment}\n\n`;
     });
 
     // Inject the cart data into a hidden field
@@ -173,14 +181,13 @@ cartForm.addEventListener('submit', function (event) {
         cartForm.appendChild(cartDataInput);
     }
 
-    // Set the value of the hidden input to the gathered cart content
+    // Set the value of the hidden input to the concatenated cart content
     cartDataInput.value = cartContent;
 
     // Submit the form (Netlify will handle the backend part)
     cartForm.submit();
-    alert('Thank you! Your order has been submitted successfully.');
-    cartItemsContainer.innerHTML = ''; // Clear the cart after submission
 });
+
 // Initial load
 window.onload = () => {
     displayProducts(products); // Display all products on load
