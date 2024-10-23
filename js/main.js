@@ -139,10 +139,6 @@ function setupRemoveFromCartListeners() {
     });
 }
 
-
-const cartForm = document.getElementById('cart-form');
-const cartItemsContainer = document.querySelector('.cart-items');
-
 // Handle form submission
 cartForm.addEventListener('submit', function (event) {
     event.preventDefault();
