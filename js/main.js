@@ -171,7 +171,16 @@ cartForm.addEventListener('submit', function (event) {
 
         // Submit the form through Netlify
         cartForm.submit();
-        
+        // Clear the cart items after submission
+        cartItems.forEach(item => {
+            item.querySelector('textarea').value = ''; // Clear the comment field
+        });
+
+        // Show confirmation alert
+        alert('Thank you! Your order has been submitted successfully.');
+
+        // Optionally, you can reset the form fields
+        cartForm.reset();
     });
 });
 
