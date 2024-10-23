@@ -3,6 +3,7 @@ import { products } from './products.js'; // Importing the products from the ext
 const productGrid = document.getElementById('product-grid');
 const categoryFilter = document.getElementById('category');
 const availabilityFilter = document.getElementById('availability');
+
 const cartItemsContainer = document.querySelector('.cart-items');
 const cartForm = document.getElementById('cart-form');
 
