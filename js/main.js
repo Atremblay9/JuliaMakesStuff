@@ -105,8 +105,8 @@ function addItemToCart(productId) {
                         <img src="${product.images[0]}" class="img-fluid rounded-3" alt="${product.name}">
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-3">
-                        <p class="lead fw-normal mb-2">${product.name}</p>
-                        <p><span class="text-muted">Price: </span>${product.price}</p>
+                        <p class="lead fw-normal mb-2 item-name">${product.name}</p>
+                        <p><span class="text-muted">Price: </span><span class="item-price">${product.price}</span></p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                         <p><span class="text-muted">Availability: </span>${product.available}</p>
@@ -139,49 +139,43 @@ function setupRemoveFromCartListeners() {
     });
 }
 
-// Handle form submission to send the order
+// Handle form submission
 cartForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    // Check if the cart is empty before submission
-    if (checkIfCartIsEmpty()) {
+    // Check if the cart is empty
+    if (!cartItemsContainer.children.length) {
+        alert('Your cart is empty! Please add items before submitting.');
         return;
     }
 
-    const cartForm = document.getElementById('cart-form');
+    // Gather the cart data
+    let cartContent = '';
+    const cartItems = document.querySelectorAll('.cart-item');
+    cartItems.forEach(item => {
+        const itemName = item.querySelector('.item-name').textContent; // Directly access item name
+        const itemPrice = item.querySelector('.item-price').textContent; // Directly access item price
+        const itemComment = item.querySelector('textarea').value || 'No comments'; // Access textarea for comments
+        cartContent += `Item: ${itemName}\nPrice: ${itemPrice}\nComments: ${itemComment}\n\n`;
 
-    // Handle form submission to send the order
-    cartForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the form from submitting normally
-
-        // Gather the cart data
-        const cartItems = document.querySelectorAll('.cart-item');
-        let cartContent = '';
-        
-        cartItems.forEach(item => {
-            const itemName = item.querySelector('strong').textContent;
-            const itemPrice = item.querySelector('p').textContent;
-            const itemComment = item.querySelector('textarea').value || 'No comments';
-            
-            cartContent += `Item: ${itemName}\nPrice: ${itemPrice}\nComments: ${itemComment}\n\n`;
-        });
-
-        // Inject the cart data into a hidden field
-        document.getElementById('cart-data').value = cartContent;
-
-        // Submit the form through Netlify
-        cartForm.submit();
-        // Clear the cart items after submission
-        cartItems.forEach(item => {
-            item.querySelector('textarea').value = ''; // Clear the comment field
-        });
-
-        // Show confirmation alert
-        alert('Thank you! Your order has been submitted successfully.');
-
-        // Optionally, you can reset the form fields
-        cartForm.reset();
+        console.log(itemName, itemPrice, itemComment);
     });
+
+    // Inject the cart data into a hidden field
+    const cartDataInput = document.createElement('input');
+    cartDataInput.type = 'hidden';
+    cartDataInput.name = 'cartData';
+    cartDataInput.value = cartContent;
+    cartForm.appendChild(cartDataInput);
+
+    // Submit the form (Netlify will handle the backend part)
+    cartForm.submit();
+
+    // Clear the cart items after submission
+    cartItemsContainer.innerHTML = '';
+
+    // Show a confirmation alert
+    alert('Thank you! Your order has been submitted successfully.');
 });
 
 // Initial load
