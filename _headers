@@ -1,0 +1,4 @@
+# Apply CORS headers to all JavaScript files in the /js/ directory
+/js/*
+  Access-Control-Allow-Origin: *
+  
