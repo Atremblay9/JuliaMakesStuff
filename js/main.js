@@ -139,6 +139,9 @@ function setupRemoveFromCartListeners() {
     });
 }
 
+const cartForm = document.getElementById('cart-form');
+const cartItemsContainer = document.querySelector('.cart-items');
+
 // Handle form submission
 cartForm.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -153,31 +156,31 @@ cartForm.addEventListener('submit', function (event) {
     let cartContent = '';
     const cartItems = document.querySelectorAll('.cart-item');
     cartItems.forEach(item => {
-        const itemName = item.querySelector('.item-name').textContent; // Directly access item name
-        const itemPrice = item.querySelector('.item-price').textContent; // Directly access item price
-        const itemComment = item.querySelector('textarea').value || 'No comments'; // Access textarea for comments
+        const itemName = item.querySelector('.item-name').textContent;
+        const itemPrice = item.querySelector('.item-price').textContent;
+        const itemComment = item.querySelector('textarea').value || 'No comments';
         cartContent += `Item: ${itemName}\nPrice: ${itemPrice}\nComments: ${itemComment}\n\n`;
-
-        console.log(itemName, itemPrice, itemComment);
     });
 
     // Inject the cart data into a hidden field
-    const cartDataInput = document.createElement('input');
-    cartDataInput.type = 'hidden';
-    cartDataInput.name = 'cartData';
+    let cartDataInput = document.getElementById('cart-data');
+    if (!cartDataInput) {
+        // If the hidden input doesn't exist, create it
+        cartDataInput = document.createElement('input');
+        cartDataInput.type = 'hidden';
+        cartDataInput.id = 'cart-data';
+        cartDataInput.name = 'cartData';
+        cartForm.appendChild(cartDataInput);
+    }
+
+    // Set the value of the hidden input to the gathered cart content
     cartDataInput.value = cartContent;
-    cartForm.appendChild(cartDataInput);
 
     // Submit the form (Netlify will handle the backend part)
     cartForm.submit();
-
-    // Clear the cart items after submission
-    cartItemsContainer.innerHTML = '';
-
-    // Show a confirmation alert
     alert('Thank you! Your order has been submitted successfully.');
+    cartItemsContainer.innerHTML = ''; // Clear the cart after submission
 });
-
 // Initial load
 window.onload = () => {
     displayProducts(products); // Display all products on load
