@@ -91,21 +91,23 @@
               <h3 class="fw-normal mb-0">Shopping Cart</h3>
               
             </div>
-            <form id="cart-form">
+            <form id="cart-form" name="order" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
                 <div class="mb-3">
                     <label for="user-name" class="form-label">Your Name</label>
-                    <input type="text" class="form-control" id="user-name" placeholder="Enter your name" required="">
+                    <input type="text" class="form-control" id="user-name" name="userName" placeholder="Enter your name" required="">
                 </div>
                 <div class="mb-3">
                     <label for="user-email" class="form-label">Your Email</label>
-                    <input type="email" class="form-control" id="user-email" placeholder="Enter your email" required="">
+                    <input type="email" class="form-control" id="user-email" name="userEmail" placeholder="Enter your email" required="">
                 </div>
         
                 <!-- Cart Items Container -->
                 <div class="cart-items">
                     
                 </div>
-        
+                <p class="hidden">
+                    <label>Don’t fill this out if you're human: <input name="bot-field"></label>
+                </p>
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary">Send Order</button>
             </form>

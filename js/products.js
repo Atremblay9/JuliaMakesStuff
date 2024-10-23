@@ -67,7 +67,7 @@ export const products = [
     { id: 7, 
         name: 'Forget Me Not Earrings', 
         images: [
-            '../img/AmazonPhotos/ForgetMeNotEarrings.jpg',
+            '../img/ForgetMeNotEarrings.jpg',
         ],
         notes: " Lobster Not Included",
         available: "Yes!",
@@ -77,7 +77,7 @@ export const products = [
     { id: 8, 
         name: 'Boo-tiful Earrings', 
         images: [
-            '../img/AmazonPhotos/Boo-tifulEarrings.jpg',
+            '../img/Boo-tifulEarrings.jpg',
         ],
         notes: "Glow in the dark Ghost earrings",
         available: "Yes!",
@@ -87,7 +87,7 @@ export const products = [
     { id: 9, 
         name: 'Rain Brings Rainbows Earrings', 
         images: [
-            '../img/AmazonPhotos/RainBringsRainbowsEarrings.jpg',
+            '../img/RainBringsRainbowsEarrings.jpg',
         ],
         notes: "",
         available: "Yes!",
@@ -97,7 +97,7 @@ export const products = [
     { id: 10, 
         name: 'Granny Too Hip to Be Square', 
         images: [
-            '../img/AmazonPhotos/GrannyTooHipEarrings.jpg',
+            '../img/GrannyTooHipEarrings.jpg',
         ],
         notes: "",
         available: "Yes!",
@@ -107,8 +107,8 @@ export const products = [
     { id: 11, 
         name: 'WitchHat', 
         images: [
-            '../img/AmazonPhotos/WitchHat.jpg',
-            '../img/AmazonPhotos/WitchHat1.jpg'
+            '../img/WitchHat.jpg',
+            '../img/WitchHat1.jpg'
         ],
         notes: "",
         available: "Custom Order Only",
@@ -118,9 +118,9 @@ export const products = [
     { id: 12, 
         name: 'Sun And Moon Earrings', 
         images: [
-            '../img/AmazonPhotos/SunAndMoonEarrings.jpg',
-            '../img/AmazonPhotos/SunAndMoonEarrings1.jpg',
-            '../img/AmazonPhotos/SunAndMoonEarrings2.jpg'    
+            '../img/SunAndMoonEarrings.jpg',
+            '../img/SunAndMoonEarrings1.jpg',
+            '../img/SunAndMoonEarrings2.jpg'    
         ],
         notes: "",
         available: "Custom Order Only",
@@ -130,7 +130,7 @@ export const products = [
     { id: 13, 
         name: 'Cherry Earrings', 
         images: [
-            '../img/AmazonPhotos/SingleCherryEarrings.jpg'   
+            '../img/SingleCherryEarrings.jpg'   
         ],
         notes: "",
         available: "Custom Order Only",
@@ -140,15 +140,15 @@ export const products = [
     { id: 14, 
         name: 'Bookmarks', 
         images: [
-            '../img/AmazonPhotos/RocketBookmark.jpg' ,
-            '../img/AmazonPhotos/RocketBookmark1.jpg' ,
-            '../img/AmazonPhotos/ShipBookmark.jpg' ,
-            '../img/AmazonPhotos/ShipBookmark2.jpg' ,
-            '../img/AmazonPhotos/ShipBookmark3.jpg' ,
-            '../img/AmazonPhotos/JellyBookmark2.jpg' ,
-            '../img/AmazonPhotos/JellyBookmark3.jpg' ,
-            '../img/AmazonPhotos/KittyBookmark.jpg' ,
-            '../img/AmazonPhotos/KittyBookmark2.jpg' ,
+            '../img/RocketBookmark.jpg' ,
+            '../img/RocketBookmark1.jpg' ,
+            '../img/ShipBookmark.jpg' ,
+            '../img/ShipBookmark2.jpg' ,
+            '../img/ShipBookmark3.jpg' ,
+            '../img/JellyBookmark2.jpg' ,
+            '../img/JellyBookmark3.jpg' ,
+            '../img/KittyBookmark.jpg' ,
+            '../img/KittyBookmark2.jpg' ,
 
         ],
         notes: "Available as Rocket, Boat, Jellyfish, or Kitty",
