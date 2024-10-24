@@ -1,7 +1,7 @@
 import { products } from './products.js'; // Importing the products from the external file
 
 const productGrid = document.getElementById('product-grid');
-const categoryFilter = document.getElementById('category');
+const categoryFilter = document.getElementById('category-select');
 const availabilityFilter = document.getElementById('availability');
 
 const cartItemsContainer = document.querySelector('.cart-items');
@@ -30,7 +30,7 @@ function displayProducts(filteredProducts) {
         ` : ''; // Show controls only if there is more than one image
 
         const productCard = `
-        <div class="col-md-6 col-lg-4 mb-4">
+        <div class="col-md-6 col-lg-4 mb-4 product-card">
             <div class="card h-100 w-100 d-flex flex-column">
                 <div id="carouselProduct${product.id}" class="carousel slide" data-ride="false" data-interval="false">
                     <div class="carousel-inner">
@@ -101,9 +101,9 @@ function addItemToCart(productId) {
         const cartItemHTML = `
         <div class="card rounded-3 mb-4 cart-item">
             <div class="card-body p-4">
-                <div class="row d-flex justify-content-between align-items-center">
-                    <div class="col-md-2 col-lg-2 col-xl-2">
-                        <img src="${product.images[0]}" class="img-fluid rounded-3" alt="${product.name}">
+                <div class="row d-flex justify-content-between align-items-center cart-items-box">
+                    <div class="col-md-2 col-lg-1 col-xl-1 cart-img-box">
+                        <img src="${product.images[0]}" class="img-fluid rounded-3 cart-img" alt="${product.name}">
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-3">
                         <p class="lead fw-normal mb-2 item-name">${product.name}</p>
@@ -187,5 +187,27 @@ cartForm.addEventListener('submit', function (event) {
 
 // Initial load
 window.onload = () => {
-    displayProducts(products); // Display all products on load
+    // Display all products on load (assuming displayProducts is already defined elsewhere)
+    displayProducts(products); 
+
+    // Get the current URL and extract the category parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('category');
+
+    // If a category is present in the URL
+    if (category) {
+        // Find the select element
+        const selectElement = document.getElementById('category-select');
+
+        // Check if the select element exists
+        if (selectElement) {
+            // Set the selected option based on the category
+            selectElement.value = category;
+
+            // Optionally trigger any change event handlers for the select element if needed
+            selectElement.dispatchEvent(new Event('change'));
+        } else {
+            console.error("Category select element not found");
+        }
+    }
 };
