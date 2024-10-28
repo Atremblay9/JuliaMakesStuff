@@ -13,6 +13,7 @@
     "@netlify/plugin-emails": "^1.1.1",
     "@sendgrid/mail": "^8.1.4",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "validator": "^13.12.0"
   },
   "devDependencies": {

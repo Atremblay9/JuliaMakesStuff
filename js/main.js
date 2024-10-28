@@ -74,15 +74,6 @@ function filterProducts() {
 categoryFilter.addEventListener('change', filterProducts);
 availabilityFilter.addEventListener('change', filterProducts);
 
-// Function to handle empty cart check
-function checkIfCartIsEmpty() {
-    const cartItems = document.querySelectorAll('.cart-item');
-    if (cartItems.length === 0) {
-        alert('Please add items to the cart before submitting your request.');
-        return true;
-    }
-    return false;
-}
 
 function setupAddToCartListeners() {
     document.querySelectorAll('.add-to-cart').forEach(button => {
@@ -112,8 +103,11 @@ function addItemToCart(productId) {
                     <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                         <p><span class="text-muted">Availability: </span>${product.available}</p>
                     </div>
-                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a href="#!" class="text-danger remove-from-cart"><i class="fas fa-trash fa-lg"></i></a>
+                    <div class="col-md-1 col-lg-1 col-xl-1 text-end mx-2">
+                            <a href="#!" class=" remove-from-cart"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart-x " viewBox="0 0 16 16">
+                            <path d="M7.354 5.646a.5.5 0 1 0-.708.708L7.793 7.5 6.646 8.646a.5.5 0 1 0 .708.708L8.5 8.207l1.146 1.147a.5.5 0 0 0 .708-.708L9.207 7.5l1.147-1.146a.5.5 0 0 0-.708-.708L8.5 6.793z"/>
+                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                        </svg></a>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -135,7 +129,6 @@ function setupRemoveFromCartListeners() {
     document.querySelectorAll('.remove-from-cart').forEach(button => {
         button.addEventListener('click', function () {
             this.closest('.cart-item').remove();
-            checkIfCartIsEmpty(); // Check if cart is empty after removing an item
         });
     });
 }
