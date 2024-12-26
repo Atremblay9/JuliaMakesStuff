@@ -191,6 +191,7 @@ main{
     margin: 1rem;
     height: 50%;
     min-height: 10rem;
+    border-radius: 5px;
 }
 
 .image-background-1{
